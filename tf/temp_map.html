@@ -1,0 +1,18 @@
+
+    <html>
+        <head></head>
+        <body>
+            <div id="map" style="width: 100%; height: 100%;"></div>
+            <script>
+                var map = L.map('map').setView([0, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                L.marker([0, 0]).addTo(map)
+                    .bindPopup('País: Brazil<br>Año: 2010<br>Casos: 80')
+                    .openPopup();
+            </script>
+        </body>
+    </html>
+    
