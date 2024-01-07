@@ -5,11 +5,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from io import BytesIO
 import time
 from PIL import Image
-import folium
 
-def capture_map_image(country, coordinates, selected_year, suicide_data):
+def capture_map_image(country, coordinates, selected_year, suicide_data,mortality_data):
     try:
         cases = suicide_data[country].get(str(selected_year), 0)
+        tasa = mortality_data[country].get(str(selected_year), 0)
     except KeyError as e:
         print(f"Error al obtener casos para {country} en {selected_year}: {str(e)}")
         cases = 0  # Proporciona un valor predeterminado en caso de error
@@ -35,12 +35,14 @@ def capture_map_image(country, coordinates, selected_year, suicide_data):
                     var country = '{country}';
                     var year = {selected_year};
                     var cases = {cases};
+                    var cases = {tasa};
 
                     // Construir la leyenda del marcador con información de casos
                     var popupContent = `
                         <strong>País:</strong> {country}<br>
                         <strong>Año:</strong> {selected_year}<br>
-                        <strong>Casos:</strong> {cases}
+                        <strong>Casos:</strong> {cases}<br>
+                        <strong>Tasa:</strong> {tasa} <strong> %</strong>
                     `;
 
                     marker.bindPopup(popupContent).openPopup();

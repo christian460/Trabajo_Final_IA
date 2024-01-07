@@ -68,7 +68,7 @@ def update_map():
         country = selected_country.get()
         year = int(selected_year.get())
         coordinates = country_coordinates.get(country, [0, 0])
-        map_image = capture_map_image(country, coordinates, year, suicide_data)
+        map_image = capture_map_image(country, coordinates, year, suicide_data, mortality_data)
 
         # Convertir la imagen PIL a Tkinter PhotoImage
         map_image_tk = ImageTk.PhotoImage(map_image)
